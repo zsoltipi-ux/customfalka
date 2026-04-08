@@ -25,30 +25,42 @@
         }
         body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
         .container { max-width:1100px; margin:0 auto; padding:1.5rem; }
+
+        /* ── Header ── */
         header { background:var(--bg-elevated); border-bottom:1px solid var(--border); padding:1.5rem 0; }
         header .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
         header h1 { font-size:1.4rem; font-weight:700; }
         header h1 span { color:var(--accent); }
         header .meta { font-size:0.8rem; color:var(--text-muted); }
+
+        /* ── Tabs ── */
         .tabs { display:flex; gap:0.5rem; overflow-x:auto; padding:1rem 0; border-bottom:1px solid var(--border); margin-bottom:1.5rem; flex-wrap:wrap; }
         .tab { padding:0.55rem 1.1rem; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--text-secondary); font-size:0.85rem; font-weight:500; cursor:pointer; transition:all .2s; white-space:nowrap; font-family:inherit; }
         .tab:hover { background:var(--bg-hover); color:var(--text); }
         .tab.active { background:var(--accent-dim); border-color:var(--accent); color:var(--accent); }
         .tab-content { display:none; }
         .tab-content.active { display:block; }
+
+        /* ── Section styling ── */
         h2 { font-size:1.35rem; font-weight:700; margin-bottom:1rem; }
         h3 { font-size:1.05rem; font-weight:600; margin-bottom:0.6rem; color:var(--text); }
         h4 { font-size:0.85rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:0.75rem; }
         p { color:var(--text-secondary); font-size:0.92rem; margin-bottom:0.8rem; }
         p strong { color:var(--text); }
+
+        /* ── Cards ── */
         .card { background:var(--bg-surface); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-bottom:1rem; }
         .card.highlight { border-color:var(--accent); background:linear-gradient(135deg,var(--bg-surface),rgba(197,164,78,0.06)); }
         .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+
+        /* ── Tags ── */
         .tag { display:inline-block; padding:0.2rem 0.65rem; border-radius:100px; font-size:0.72rem; font-weight:600; margin-right:0.4rem; margin-bottom:0.3rem; }
         .tag-win { background:rgba(16,185,129,0.15); color:var(--you-win); }
         .tag-lose { background:rgba(239,68,68,0.15); color:var(--they-win); }
         .tag-neutral { background:rgba(255,255,255,0.08); color:var(--text-muted); }
         .tag-opportunity { background:rgba(59,130,246,0.15); color:var(--blue); }
+
+        /* ── Comparison matrix ── */
         .matrix { width:100%; border-collapse:collapse; margin-bottom:1.5rem; font-size:0.85rem; }
         .matrix th { background:var(--bg-elevated); padding:0.75rem 1rem; text-align:left; font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted); border-bottom:1px solid var(--border); position:sticky; top:0; }
         .matrix td { padding:0.7rem 1rem; border-bottom:1px solid var(--border); color:var(--text-secondary); vertical-align:top; }
@@ -57,19 +69,30 @@
         .matrix .lose { color:var(--they-win); font-weight:600; }
         .matrix .tie { color:var(--tie); font-weight:600; }
         .matrix .cf { color:var(--accent); font-weight:600; }
+
+        /* ── Stats row ── */
         .stats { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem; }
         .stat { background:var(--bg-surface); border:1px solid var(--border); border-radius:12px; padding:1.25rem; text-align:center; }
         .stat .num { font-size:1.8rem; font-weight:800; color:var(--accent); line-height:1.2; }
         .stat .label { font-size:0.78rem; color:var(--text-muted); margin-top:0.3rem; }
+
+        /* ── Lists ── */
         .clean-list { list-style:none; }
         .clean-list li { padding:0.4rem 0; color:var(--text-secondary); font-size:0.9rem; display:flex; align-items:baseline; gap:0.6rem; }
         .clean-list li::before { content:'→'; color:var(--accent); font-weight:600; flex-shrink:0; }
+
         .win-list li::before { content:'✓'; color:var(--you-win); }
         .lose-list li::before { content:'✗'; color:var(--they-win); }
         .opp-list li::before { content:'◆'; color:var(--blue); }
+
+        /* ── Divider ── */
         .divider { border:none; border-top:1px solid var(--border); margin:2rem 0; }
+
+        /* ── Strategy box ── */
         .strategy-box { background:linear-gradient(135deg,var(--bg-surface),rgba(59,130,246,0.05)); border:1px solid var(--blue); border-radius:12px; padding:1.5rem; margin-bottom:1rem; }
         .strategy-box h3 { color:var(--blue); }
+
+        /* ── Responsive ── */
         @media(max-width:640px) {
             .card-grid { grid-template-columns:1fr; }
             .stats { grid-template-columns:1fr 1fr; }
@@ -89,6 +112,7 @@
 
 <div class="container">
 
+    <!-- ── TABS ── -->
     <nav class="tabs">
         <button class="tab active" data-tab="market">Piac & Számok</button>
         <button class="tab" data-tab="matrix">Összehasonlítás</button>
@@ -99,14 +123,31 @@
         <button class="tab" data-tab="strategy">Stratégia & Lehetőségek</button>
     </nav>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAB: Piac & Számok -->
+    <!-- ═══════════════════════════════════════════ -->
     <section id="market" class="tab-content active">
         <h2>A piac mérete és bevételi potenciál</h2>
+
         <div class="stats">
-            <div class="stat"><div class="num">$13.9B</div><div class="label">Fitness app piac – 2026 globális</div></div>
-            <div class="stat"><div class="num">$3B</div><div class="label">Európai fitness app bevétel – 2025</div></div>
-            <div class="stat"><div class="num">13.4%</div><div class="label">Éves növekedés (CAGR 2026-2033)</div></div>
-            <div class="stat"><div class="num">$93.7B</div><div class="label">Virtuális fitness piac – 2030 (prognózis)</div></div>
+            <div class="stat">
+                <div class="num">$13.9B</div>
+                <div class="label">Fitness app piac – 2026 globális</div>
+            </div>
+            <div class="stat">
+                <div class="num">$3B</div>
+                <div class="label">Európai fitness app bevétel – 2025</div>
+            </div>
+            <div class="stat">
+                <div class="num">13.4%</div>
+                <div class="label">Éves növekedés (CAGR 2026-2033)</div>
+            </div>
+            <div class="stat">
+                <div class="num">$93.7B</div>
+                <div class="label">Virtuális fitness piac – 2030 (prognózis)</div>
+            </div>
         </div>
+
         <div class="card-grid">
             <div class="card">
                 <h4>ARPU (átlagos bevétel / felhasználó)</h4>
@@ -123,6 +164,7 @@
                 <p><strong>Creator-led community:</strong> Új és növekvő modell — itt van a CustomFalka</p>
             </div>
         </div>
+
         <div class="card highlight">
             <h4>CustomFalka bevételi potenciál — becslés</h4>
             <p>A Falka jelenlegi helyzete: <strong>~1200 tag × $28/hó = ~$33,600/hó</strong> (~$403k/év).</p>
@@ -130,31 +172,108 @@
             <ul class="clean-list">
                 <li>Retención javulás (+10-15%): ~$40-60k/év extra bevétel a megtartott tagokból</li>
                 <li>Upsell lehetőség (+$5-10/hó premium tier): +$72-144k/év ha a tagok 50%-a fizet</li>
-                <li>Új tagszérzés (word-of-mouth): nehézen becsülhető, de 20% növekedés = +$80k/év</li>
+                <li>Új tagszerzés (word-of-mouth, "próbáld ki az AI tervet"): nehezen becsülhető, de 20% növekedés = +$80k/év</li>
                 <li><strong>Összesített potenciál: +$100-280k/év a Falka ökoszisztémában</strong></li>
             </ul>
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAB: Összehasonlítás -->
+    <!-- ═══════════════════════════════════════════ -->
     <section id="matrix" class="tab-content">
         <h2>CustomFalka vs. Versenytársak — Összehasonlító Mátrix</h2>
+
         <div style="overflow-x:auto;">
         <table class="matrix">
-            <thead><tr>
-                <th>Szempont</th><th class="cf">CustomFalka</th><th>Freeletics</th><th>Fitbod</th><th>Zing Coach</th><th>Pliability</th><th>Hyperhuman</th>
-            </tr></thead>
+            <thead>
+                <tr>
+                    <th>Szempont</th>
+                    <th class="cf">CustomFalka</th>
+                    <th>Freeletics</th>
+                    <th>Fitbod</th>
+                    <th>Zing Coach</th>
+                    <th>Pliability</th>
+                    <th>Hyperhuman</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr><td><strong>Típus</strong></td><td class="cf">Creator-led AI + Community</td><td>AI fitness app</td><td>AI gym planner</td><td>AI coach app</td><td>Mobility/recovery app</td><td>White-label platform</td></tr>
-                <tr><td><strong>Személyre szabás</strong></td><td class="win">Szakértői tartalom + AI</td><td class="tie">AI adaptív</td><td class="tie">AI algoritmus</td><td class="tie">AI + kérdőív</td><td class="lose">Részleges</td><td class="tie">Creator tartalom + AI</td></tr>
-                <tr><td><strong>Szakértő mögötte</strong></td><td class="win">Igen (Farkas Marcell)</td><td class="lose">Nincs — csak AI</td><td class="lose">Nincs — csak AI</td><td class="lose">Nincs — csak AI</td><td class="tie">Igen (Kelly Starrett)</td><td class="tie">Creator-függő</td></tr>
-                <tr><td><strong>Közösség</strong></td><td class="win">Erős (Skool, 1200+ tag)</td><td class="tie">Van (app-ban)</td><td class="lose">Nincs</td><td class="lose">Nincs</td><td class="lose">Nincs</td><td class="tie">Opcionális</td></tr>
-                <tr><td><strong>Mobilitás / rehab fókusz</strong></td><td class="win">Elsődleges (F33, protokollok)</td><td class="lose">HIIT/erő fókusz</td><td class="lose">Gym/erő fókusz</td><td class="tie">Fitness általános</td><td class="win">Elsődleges</td><td class="tie">Creator-függő</td></tr>
-                <tr><td><strong>Magyar nyelv</strong></td><td class="win">Igen, natív</td><td class="lose">Nincs</td><td class="lose">Nincs</td><td class="lose">Nincs</td><td class="lose">Nincs</td><td class="tie">Lehetséges</td></tr>
-                <tr><td><strong>Ár</strong></td><td class="cf">Benne a Falka tagdíjban ($28/hó) vagy +premium</td><td>$8.50-13/hó</td><td>$16/hó vagy $96/év</td><td>$19/hó vagy $60/év</td><td>~$12/hó</td><td>White-label díj</td></tr>
-                <tr><td><strong>Éves bevétel</strong></td><td class="cf">Újszerű modell</td><td>~$21M</td><td>~$24M (est.)</td><td>$10M+ funding</td><td>Nem publikus</td><td>B2B SaaS</td></tr>
+                <tr>
+                    <td><strong>Típus</strong></td>
+                    <td class="cf">Creator-led AI + Community</td>
+                    <td>AI fitness app</td>
+                    <td>AI gym planner</td>
+                    <td>AI coach app</td>
+                    <td>Mobility/recovery app</td>
+                    <td>White-label platform</td>
+                </tr>
+                <tr>
+                    <td><strong>Személyre szabás</strong></td>
+                    <td class="win">Szakértői tartalom + AI</td>
+                    <td class="tie">AI adaptív</td>
+                    <td class="tie">AI algoritmus</td>
+                    <td class="tie">AI + kérdőív</td>
+                    <td class="lose">Részleges</td>
+                    <td class="tie">Creator tartalom + AI</td>
+                </tr>
+                <tr>
+                    <td><strong>Szakértő mögötte</strong></td>
+                    <td class="win">Igen (Farkas Marcell)</td>
+                    <td class="lose">Nincs — csak AI</td>
+                    <td class="lose">Nincs — csak AI</td>
+                    <td class="lose">Nincs — csak AI</td>
+                    <td class="tie">Igen (Kelly Starrett)</td>
+                    <td class="tie">Creator-függő</td>
+                </tr>
+                <tr>
+                    <td><strong>Közösség</strong></td>
+                    <td class="win">Erős (Skool, 1200+ tag)</td>
+                    <td class="tie">Van (app-ban)</td>
+                    <td class="lose">Nincs</td>
+                    <td class="lose">Nincs</td>
+                    <td class="lose">Nincs</td>
+                    <td class="tie">Opcionális</td>
+                </tr>
+                <tr>
+                    <td><strong>Mobilitás / rehab fókusz</strong></td>
+                    <td class="win">Elsődleges (F33, protokollok)</td>
+                    <td class="lose">HIIT/erő fókusz</td>
+                    <td class="lose">Gym/erő fókusz</td>
+                    <td class="tie">Fitness általános</td>
+                    <td class="win">Elsődleges</td>
+                    <td class="tie">Creator-függő</td>
+                </tr>
+                <tr>
+                    <td><strong>Magyar nyelv</strong></td>
+                    <td class="win">Igen, natív</td>
+                    <td class="lose">Nincs</td>
+                    <td class="lose">Nincs</td>
+                    <td class="lose">Nincs</td>
+                    <td class="lose">Nincs</td>
+                    <td class="tie">Lehetséges</td>
+                </tr>
+                <tr>
+                    <td><strong>Ár</strong></td>
+                    <td class="cf">Benne a Falka tagdíjban ($28/hó) vagy +premium</td>
+                    <td>$8.50-13/hó</td>
+                    <td>$16/hó vagy $96/év</td>
+                    <td>$19/hó vagy $60/év</td>
+                    <td>~$12/hó</td>
+                    <td>White-label díj</td>
+                </tr>
+                <tr>
+                    <td><strong>Éves bevétel</strong></td>
+                    <td class="cf">Újszerű modell</td>
+                    <td>~$21M</td>
+                    <td>~$24M (est.)</td>
+                    <td>$10M+ funding</td>
+                    <td>Nem publikus</td>
+                    <td>B2B SaaS</td>
+                </tr>
             </tbody>
         </table>
         </div>
+
         <div class="card highlight" style="margin-top:1.5rem;">
             <h4>Ahol a CustomFalka nyer</h4>
             <ul class="clean-list win-list">
@@ -167,8 +286,12 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAB: Globális Versenytársak -->
+    <!-- ═══════════════════════════════════════════ -->
     <section id="global" class="tab-content">
         <h2>Globális Versenytársak — Részletes</h2>
+
         <div class="card">
             <h3>Freeletics</h3>
             <p><span class="tag tag-neutral">München, DE</span><span class="tag tag-neutral">~$21M/év</span><span class="tag tag-neutral">$70M funding</span></p>
@@ -187,6 +310,7 @@
                 <li>Személyesebb — nem "egy a milliók közül" élmény</li>
             </ul>
         </div>
+
         <div class="card">
             <h3>Fitbod</h3>
             <p><span class="tag tag-neutral">San Francisco, US</span><span class="tag tag-neutral">~$2M/hó bevétel</span><span class="tag tag-neutral">~200k letöltés/hó</span></p>
@@ -204,6 +328,7 @@
                 <li>Expert-validated tartalom vs. csak AI</li>
             </ul>
         </div>
+
         <div class="card">
             <h3>Zing Coach</h3>
             <p><span class="tag tag-neutral">EU (Palta-backed)</span><span class="tag tag-neutral">$10M Series A</span><span class="tag tag-neutral">$19/hó</span></p>
@@ -221,6 +346,7 @@
                 <li>Mobility/holisztikus niche vs. általános fitness</li>
             </ul>
         </div>
+
         <div class="card">
             <h3>Hyperhuman</h3>
             <p><span class="tag tag-neutral">White-label platform</span><span class="tag tag-neutral">B2B SaaS modell</span></p>
@@ -235,9 +361,13 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAB: Mobilitás & Rehab -->
+    <!-- ═══════════════════════════════════════════ -->
     <section id="mobility" class="tab-content">
         <h2>Mobilitás & Rehab Niche — Direkt versenytársak</h2>
         <p>Ez a CustomFalka legközelebbi piaci szegmense — és itt a <strong>legkevesebb a verseny</strong>.</p>
+
         <div class="card-grid">
             <div class="card">
                 <h3>Pliability (volt ROMWOD)</h3>
@@ -260,10 +390,11 @@
             <div class="card">
                 <h3>Prehab Guys</h3>
                 <p><span class="tag tag-neutral">US</span><span class="tag tag-neutral">55+ program</span></p>
-                <p>Fizioterápiás háttérrel, sérülésprevenciós fókusz. 4000+ gyakorlat. Komplex, de nem "egyszerű napi terv" jellegű.</p>
+                <p>Fizikoterápiás háttérrel, sérülésprevenciós fókusz. 4000+ gyakorlat. Komplex, de nem "egyszerű napi terv" jellegű.</p>
                 <p><strong>Hiányzik:</strong> egyszerűség, közösség, magyar nyelv, AI adaptáció.</p>
             </div>
         </div>
+
         <div class="card highlight">
             <h4>A CustomFalka Niche Előnye</h4>
             <p>A mobilitás/rehab piacon <strong>senki nem kombinálja</strong> ezt a hármat:</p>
@@ -275,14 +406,35 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAB: Magyar Piac -->
+    <!-- ═══════════════════════════════════════════ -->
     <section id="hungary" class="tab-content">
         <h2>Magyar Piac — Helyi versenytársak és kontextus</h2>
+
         <div class="card-grid">
-            <div class="card"><h3>Álomalak</h3><p>Személyre szabott edzésterv szolgáltatás — kézi összeállítás, nem AI. Fogyás/izomépítés fókusz.</p><p><strong>Modell:</strong> Egyszeri vásárlás → terv → nincs community.</p></div>
-            <div class="card"><h3>BartaFit</h3><p>4 hetes személyre szabott edzésprogram. Nem sablon, kézi összeállítás. ~15,000 Ft.</p><p><strong>Modell:</strong> Egyszeri termék, nincs AI, nincs közösség.</p></div>
-            <div class="card"><h3>ATPP</h3><p>Online program: edzésterv + étrend, testsúly/magasság/cél alapján. Személyi edző vonalon.</p><p><strong>Modell:</strong> Subscription, de nincs AI personalizáció.</p></div>
-            <div class="card"><h3>GetFIT App</h3><p>Magyar fitness app — AI edző, receptek, edzésprogramok, kalória tracking. A legfejlettebb magyar megoldás.</p><p><strong>Modell:</strong> Freemium + premium subscription.</p></div>
+            <div class="card">
+                <h3>Álomalak</h3>
+                <p>Személyre szabott edzésterv szolgáltatás — kézi összeállítás, nem AI. Fogyás/izomépítés fókusz.</p>
+                <p><strong>Modell:</strong> Egyszeri vásárlás → terv → nincs community.</p>
+            </div>
+            <div class="card">
+                <h3>BartaFit</h3>
+                <p>4 hetes személyre szabott edzésprogram. Nem sablon, kézi összeállítás. ~15,000 Ft.</p>
+                <p><strong>Modell:</strong> Egyszeri termék, nincs AI, nincs közösség.</p>
+            </div>
+            <div class="card">
+                <h3>ATPP</h3>
+                <p>Online program: edzésterv + étrend, testsúly/magasság/cél alapján. Személyi edző vonalon.</p>
+                <p><strong>Modell:</strong> Subscription, de nincs AI personalizáció.</p>
+            </div>
+            <div class="card">
+                <h3>GetFIT App</h3>
+                <p>Magyar fitness app — AI edző, receptek, edzésprogramok, kalória tracking. A legfejlettebb magyar megoldás.</p>
+                <p><strong>Modell:</strong> Freemium + premium subscription.</p>
+            </div>
         </div>
+
         <div class="card highlight">
             <h4>Magyar piaci rés</h4>
             <ul class="clean-list opp-list">
@@ -295,16 +447,41 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAB: Coach Platformok -->
+    <!-- ═══════════════════════════════════════════ -->
     <section id="platforms" class="tab-content">
         <h2>Coach Platformok — Build vs. Buy</h2>
         <p>Ha Marcell nem custom fejlesztést akar, ezek az alternatívák:</p>
+
         <div class="card-grid">
-            <div class="card"><h3>Skool (jelenlegi)</h3><p><span class="tag tag-neutral">$99/hó</span><span class="tag tag-neutral">0% platform fee</span></p><p>Community + courses + gamification. Amit csinál, jól csinálja — de <strong>nincs AI personalizáció, nincs egyedi workout terv</strong>.</p></div>
-            <div class="card"><h3>Trainerize</h3><p><span class="tag tag-neutral">$10-225/hó</span><span class="tag tag-neutral">Kliens szám alapján</span></p><p>Online PT platform: edzéstervek, nutrition, habit tracking. Jó 1-on-1-re, de <strong>nem community-focused</strong> és <strong>nincs AI generálás</strong>.</p></div>
-            <div class="card"><h3>TrueCoach</h3><p><span class="tag tag-neutral">$20-107/hó</span><span class="tag tag-neutral">5-50 kliens</span></p><p>Egyszerű, 1-on-1 coaching platform. Edzésterv küldés, tracking. <strong>Nem skálázódik 1200 tagra</strong>, nincs community.</p></div>
-            <div class="card"><h3>Hyperhuman Club</h3><p><span class="tag tag-opportunity">Potenciális partner</span></p><p>White-label iOS/Android app, AI personalizáció, content API. <strong>Falka branding alatt futhatna</strong> — nem kell app-ot építeni. Érdemes vizsgálni.</p></div>
-            <div class="card"><h3>Mighty Networks / Mighty Pro</h3><p><span class="tag tag-neutral">$41-360/hó</span><span class="tag tag-neutral">White-label opció</span></p><p>Community + courses + AI (Mighty Co-Host). Skool alternatíva. <strong>Mighty Pro = saját branded app</strong>, de drágább.</p></div>
+            <div class="card">
+                <h3>Skool (jelenlegi)</h3>
+                <p><span class="tag tag-neutral">$99/hó</span><span class="tag tag-neutral">0% platform fee</span></p>
+                <p>Community + courses + gamification. Amit csinál, jól csinálja — de <strong>nincs AI personalizáció, nincs egyedi workout terv</strong>.</p>
+            </div>
+            <div class="card">
+                <h3>Trainerize</h3>
+                <p><span class="tag tag-neutral">$10-225/hó</span><span class="tag tag-neutral">Kliens szám alapján</span></p>
+                <p>Online PT platform: edzéstervek, nutrition, habit tracking. Jó 1-on-1-re, de <strong>nem community-focused</strong> és <strong>nincs AI generálás</strong>.</p>
+            </div>
+            <div class="card">
+                <h3>TrueCoach</h3>
+                <p><span class="tag tag-neutral">$20-107/hó</span><span class="tag tag-neutral">5-50 kliens</span></p>
+                <p>Egyszerű, 1-on-1 coaching platform. Edzésterv küldés, tracking. <strong>Nem skálázódik 1200 tagra</strong>, nincs community.</p>
+            </div>
+            <div class="card">
+                <h3>Hyperhuman Club</h3>
+                <p><span class="tag tag-opportunity">Potenciális partner</span></p>
+                <p>White-label iOS/Android app, AI personalizáció, content API. <strong>Falka branding alatt futhatna</strong> — nem kell app-ot építeni. Érdemes vizsgálni.</p>
+            </div>
+            <div class="card">
+                <h3>Mighty Networks / Mighty Pro</h3>
+                <p><span class="tag tag-neutral">$41-360/hó</span><span class="tag tag-neutral">White-label opció</span></p>
+                <p>Community + courses + AI (Mighty Co-Host). Skool alternatíva. <strong>Mighty Pro = saját branded app</strong>, de drágább.</p>
+            </div>
         </div>
+
         <div class="card highlight">
             <h4>Javaslat: Hibrid megközelítés</h4>
             <p>A CustomFalka nem helyettesíti a Skool-t — <strong>kiegészíti</strong>. Legjobb path:</p>
@@ -317,30 +494,55 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TAB: Stratégia & Lehetőségek -->
+    <!-- ═══════════════════════════════════════════ -->
     <section id="strategy" class="tab-content">
         <h2>Stratégia & Lehetőségek</h2>
+
         <div class="strategy-box">
             <h3>1. Azonnali lehetőség: "Intelligent Onboarding"</h3>
-            <p>A legegyszerűbb, leggyorsabb win: <strong>az első 30 napot megoldani</strong>. Új tag → kérdőív → személyre szabott terv Marcell anyagaiból. Ez önmagában csökkenti a lemorzsolodást és növeli az értékérzetet.</p>
-            <ul class="clean-list"><li>Fejlesztés: 2-4 hét MVP</li><li>Költség: minimális (AI API + egyszerű web app)</li><li>Hatás: +10-15% retention → +$40-60k/év</li></ul>
+            <p>A legegyszerűbb, leggyorsabb win: <strong>az első 30 napot megoldani</strong>. Új tag → kérdőív → személyre szabott terv Marcell anyagaiból. Ez önmagában csökkenti a lemorzsolódást és növeli az értékérzetet.</p>
+            <ul class="clean-list">
+                <li>Fejlesztés: 2-4 hét MVP</li>
+                <li>Költség: minimális (AI API + egyszerű web app)</li>
+                <li>Hatás: +10-15% retention → +$40-60k/év</li>
+            </ul>
         </div>
+
         <div class="strategy-box">
             <h3>2. Növekedési lehetőség: Premium Tier</h3>
             <p>Ha az onboarding beválik, <strong>"CustomFalka Premium"</strong> mint upsell: folyamatosan adaptálódó terv, haladás-tracking, AI chat Marcell tudásbázisával.</p>
-            <ul class="clean-list"><li>+$5-10/hó a $28 felett → tagok 50%-ánál = +$72-144k/év</li><li>Versenyelőny: egyetlen hasonló megoldás sem létezik magyarul</li></ul>
+            <ul class="clean-list">
+                <li>+$5-10/hó a $28 felett → tagok 50%-ánál = +$72-144k/év</li>
+                <li>Versenyelőny: egyetlen hasonló megoldás sem létezik magyarul</li>
+            </ul>
         </div>
+
         <div class="strategy-box">
             <h3>3. Skálázási lehetőség: Más creatoroknak is</h3>
-            <p>Ha a modell működik Marcellnel, <strong>ugyanez a rendszer más Skool/community creatoroknak is eladható</strong> — yoga, táplálkozás, életviteli tanácsadás, stb. White-label "CustomX" platform.</p>
-            <ul class="clean-list"><li>SaaS modell: $99-499/hó per creator</li><li>Globális piac: 10,000+ fitness creator keres ilyen megoldást</li><li>Ez már önálló startup terület</li></ul>
+            <p>Ha a modell működik Marcellnél, <strong>ugyanez a rendszer más Skool/community creatoroknak is eladható</strong> — yoga, táplálkozás, életviteli tanácsadás, stb. White-label "CustomX" platform.</p>
+            <ul class="clean-list">
+                <li>SaaS modell: $99-499/hó per creator</li>
+                <li>Globális piac: 10,000+ fitness creator keres ilyen megoldást</li>
+                <li>Ez már önálló startup terület</li>
+            </ul>
         </div>
+
         <div class="strategy-box">
             <h3>4. Hosszú távú vízió: Skool kiváltása</h3>
             <p>Ha a CustomFalka platform elég éretté válik, <strong>elméletileg kiválthatja a Skool-t</strong> — community + tartalom + AI tervek egy helyen. De ez 12-18 hónap fejlesztés és nem az első lépés.</p>
-            <ul class="clean-list"><li>Kockázat: magas — a Skool-t kész terméket cserélnénk le</li><li>Jutalom: teljes kontroll, magasabb margin, egyedi élmény</li><li>Javaslat: csak bizonyított traction után, nem elsőre</li></ul>
+            <ul class="clean-list">
+                <li>Kockázat: magas — a Skool-t kész terméket cserélnénk le</li>
+                <li>Jutalom: teljes kontroll, magasabb margin, egyedi élmény</li>
+                <li>Javaslat: csak bizonyított traction után, nem elsőre</li>
+            </ul>
         </div>
+
         <hr class="divider">
+
         <h2>Összefoglaló: Miért most és miért a CustomFalka?</h2>
+
         <div class="card-grid">
             <div class="card highlight">
                 <h4>Piaci rés</h4>
@@ -361,6 +563,7 @@
                 </ul>
             </div>
         </div>
+
         <div class="card" style="border-color:var(--you-win);">
             <h4 style="color:var(--you-win);">Javasolt roadmap</h4>
             <ul class="clean-list">

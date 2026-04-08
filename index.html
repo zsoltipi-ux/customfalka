@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CustomFalka — Ajánlat Farkas Marcellnek</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-2: #1e1e1e;
+            --border: #2a2a2a;
+            --text: #e8e8e8;
+            --text-muted: #888;
+            --accent: #c5a44e;
+            --accent-glow: rgba(197, 164, 78, 0.15);
+            --wolf: #8b7355;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--accent);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), #e8d5a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ── Sections ── */
+        section {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        p { margin-bottom: 1.2rem; color: var(--text-muted); font-size: 1.05rem; }
+        p strong { color: var(--text); font-weight: 600; }
+
+        /* ── Divider ── */
+        .divider {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .divider hr {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Personal intro ── */
+        .personal-intro {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .personal-intro .greeting {
+            font-size: 1.3rem;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* ── Problem / Solution cards ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 640px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .card.highlight {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--surface), rgba(197, 164, 78, 0.05));
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .card p { font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ── Flow / Steps ── */
+        .flow {
+            margin: 2.5rem 0;
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .flow-num {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .flow-text h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+        }
+
+        .flow-text p { font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ── Comparison table ── */
+        .comparison {
+            margin: 2.5rem 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison th {
+            background: var(--surface);
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison th:last-child { color: var(--accent); }
+
+        .comparison td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .comparison tr:last-child td { border-bottom: none; }
+        .comparison td:last-child { color: var(--text); font-weight: 500; }
+
+        /* ── What each brings ── */
+        .brings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 640px) {
+            .brings-grid { grid-template-columns: 1fr; }
+        }
+
+        .brings-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .brings-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .brings-list {
+            list-style: none;
+        }
+
+        .brings-list li {
+            padding: 0.4rem 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brings-list li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem 6rem;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--surface), rgba(197, 164, 78, 0.08));
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 3.5rem 2.5rem;
+        }
+
+        .cta-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
+
+        .btn-primary:hover {
+            background: #d4b35d;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-1px);
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Origin story ── */
+        .origin-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .origin-box .origin-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .origin-box h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .origin-box p { font-size: 0.95rem; }
+
+        .proto-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .proto-link:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .origin-arrow {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        /* ── Proof section ── */
+        .proof-quote {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text);
+            font-size: 1.05rem;
+        }
+
+        .proof-quote .author {
+            font-style: normal;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+        }
+
+        /* ── Metric row ── */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        @media (max-width: 640px) {
+            .metrics { grid-template-columns: 1fr; }
+        }
+
+        .metric {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .metric .num {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+
+        .metric .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HERO ═══ -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Együttműködési ajánlat</div>
+            <h1>Mi lenne, ha a Falka minden tagja <span>az első napon</span> személyre szabott tervet kapna?</h1>
+            <p class="hero-sub">Egy ötlet, amivel a Falka tudásbázisa mindenkihez úgy szólhat, mintha személyesen neki készült volna — automatikusan, AI-val, a te meglévő anyagaidból.</p>
+        </div>
+        <div class="scroll-hint">↓ Görgess tovább</div>
+    </div>
+
+    <!-- ═══ SZEMÉLYES BEVEZETŐ ═══ -->
+    <section>
+        <div class="personal-intro">
+            <p class="greeting">Szia Marci! 👋</p>
+            <p>A nevem <strong>Zsolt</strong>, és a Falka aktív tagja vagyok — a mai napig használom az anyagaidat és sokat formált rajtam. Éppen ezért írok neked: <strong>nem kívülállóként, hanem olyanként, aki megtapasztalta, hogy működik amit csinálsz</strong>.</p>
+            <p>Van egy ötletem, ami abból nőtt ki, amit egy haveromnak csináltam — és szerintem a Falkát egy szinttel feljebb léptethetné. Hadd meséljek.</p>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- ═══ ORIGIN STORY ═══ -->
+    <section>
+        <div class="section-label">Az előzmény</div>
+        <h2>Hogyan jutott eszembe ez az egész?</h2>
+
+        <div class="origin-box">
+            <div class="origin-label">1. lépés — A prototípus</div>
+            <h3>Csináltam egy napi rutint a haveromnak, mert lusta volt tanulni</h3>
+            <p>A haveromnak, Norbinak volt egy komoly <strong>bokasérülése</strong>. Tudtam, hogy napi 10 perc célzott gyakorlattal sokat lehetne javítani — de ő (mint a legtöbb ember) <strong>nem volt hajlandó heteket tölteni azzal, hogy megtanulja, mi kell neki</strong>.</p>
+            <p>Szóval csináltam neki egy személyre szabott napi tervet: reggel 3 perc, napközben 5 perc, este 2 perc. Pontosan megmondja, mit csináljon, hogyan, és miért. Kipipálós, egyszerű, 0 gondolkodás.</p>
+            <a href="https://zsoltipi-ux.github.io/norbi-todo/norbi-todo.html" target="_blank" class="proto-link">
+                → Nézd meg a prototípust: Norbi napi 10 perce
+            </a>
+        </div>
+
+        <div class="origin-arrow">↓</div>
+
+        <div class="origin-box">
+            <div class="origin-label">2. lépés — A felismerés</div>
+            <h3>Mi lenne, ha nem az AI mondaná meg, mit csináljon valaki — hanem valaki, aki tényleg ért hozzá?</h3>
+            <p>A Norbi-féle terv működött — de én magam raktam össze, és <strong>én nem vagyok szakember</strong>. Utánanéztem dolgoknak, összeollóztam, de nem tudtam biztosan, hogy jó-e amit csinálok.</p>
+            <p>Aztán eszembe jutott: <strong>te viszont szakember vagy</strong>. A Falkában megvan a tudásbázis: F33, mobilitási programok, gerinc- és térdprotokollok, légzésgyakorlatok. Minden megvan — csak éppen nem személyre szabva.</p>
+            <p><strong>Mi lenne, ha ezt a „személyre szabott terv" koncepciót összekötnénk a te valódi tudásoddal?</strong> Nem az AI találja ki a gyakorlatokat — hanem a te anyagaidból válogat, a te logikád szerint, személyre szabva.</p>
+        </div>
+
+        <div class="origin-arrow">↓</div>
+
+        <div class="origin-box">
+            <div class="origin-label">3. lépés — Az ötlet</div>
+            <h3>A Falka sokat segített rajtam. Ezt szeretném visszaadni.</h3>
+            <p>A Falka aktív tagjaként tudom, mekkora érték van benne. De azt is tudom, hogy <strong>az elején nehéz megtalálni a saját utat</strong> a rengeteg anyagban. Én IT/AI szakember vagyok, vannak fejlesztőim — és <strong>látom, hogyan lehetne az egészet egy szinttel feljebb vinni</strong>, minimális plusz munkával a te részedről.</p>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- ═══ A PROBLÉMA ═══ -->
+    <section>
+        <div class="section-label">A felismerés</div>
+        <h2>A Falka fantasztikus. De az első 30 nap kritikus.</h2>
+        <p>Amikor valaki belép a Falkába, egy <strong>hatalmas, értékes tudásbázist</strong> kap: mobilitási programok, F33 challenge, gerinc- és térdprotokollok, légzésgyakorlatok, tudatossági tartalmak. Ez óriási érték.</p>
+        <p>De az új tag szemszögéből? <strong>Honnan kezdje? Mi az, ami neki kell?</strong> Van, akinek a gerince fáj. Van, aki mobilitásban akar fejlődni. Van, aki 50 felett keres megoldást. Mindenki más.</p>
+        <p>Ma az új tagnak hetekbe telhet, mire megtalálja a saját útját az anyagban — és <strong>sokan pont ebben az időszakban morzsolódnak le</strong>, mielőtt éreznék a hatást.</p>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="num">30 nap</div>
+                <div class="label">mire az átlag tag megtalálja a ritmust</div>
+            </div>
+            <div class="metric">
+                <div class="num">1200+</div>
+                <div class="label">tag — mindegyik más kiindulóponttal</div>
+            </div>
+            <div class="metric">
+                <div class="num">15 perc/nap</div>
+                <div class="label">elég az eredményhez — ha tudja, mit csináljon</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- ═══ AZ ÖTLET ═══ -->
+    <section>
+        <div class="section-label">Az ötlet</div>
+        <h2>CustomFalka: személyre szabott workplan — automatikusan</h2>
+        <p>Képzeld el, hogy minden új (és régi) Falka tag kitölt egy rövid kérdőívet vagy lecseveg egy AI asszisztenssel — és <strong>percek alatt kap egy személyre szabott edzéstervet</strong>, ami pontosan a te meglévő anyagaidból van összeállítva.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Személyre szabott útvonal</h3>
+                <p>Nem kell a tagnak keresgélnie. Megkapja a saját tervét: mi az első lépés, mi a második, és miért.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Azonnali értékadás</h3>
+                <p>Nem 30 nap, hanem az első napon tudja, mit csináljon. 15 perc/nap, személyre szabva.</p>
+            </div>
+            <div class="card highlight">
+                <div class="card-icon">🤖</div>
+                <h3>AI, ami a te tudásoddal beszél</h3>
+                <p>Az AI nem kitalál semmit — kizárólag a te anyagaidból dolgozik. Mintha te személyesen adnál tanácsot mindenkinek.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📈</div>
+                <h3>Skálázható személyesség</h3>
+                <p>Amit eddig 1-on-1 tudtál megadni, azt most 1200+ tagnak egyszerre — a minőség megtartásával.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- ═══ HOGYAN MŰKÖDNE ═══ -->
+    <section>
+        <div class="section-label">Hogyan működne</div>
+        <h2>3 lépés a tag szemszögéből</h2>
+        <div class="flow">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-text">
+                    <h4>Rövid felmérés</h4>
+                    <p>A tag válaszol néhány kérdésre: Mi a célja? Hol tart most? Mi fáj? Mennyi ideje van naponta? — Lehet egyszerű kérdőív, vagy egy barátságos AI chat.</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-text">
+                    <h4>Személyre szabott terv generálás</h4>
+                    <p>Az AI a válaszok alapján összeállít egy heti/havi workplant a Falka meglévő anyagaiból — a megfelelő programokkal, gyakorlatokkal, sorrendben.</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-text">
+                    <h4>Követés és adaptálás</h4>
+                    <p>A tag halad a terven, és ha változik a helyzete (előrelépett, új cél, más fájdalom), a terv vele együtt változik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- ═══ ELŐTTE / UTÁNA ═══ -->
+    <section>
+        <div class="section-label">Az eredmény</div>
+        <h2>Előtte → Utána</h2>
+        <div class="comparison">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ma</th>
+                        <th>CustomFalka-val</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Az új tag böngészi az anyagokat, nem tudja hol kezdje</td>
+                        <td>Az első napon megkapja a személyre szabott tervét</td>
+                    </tr>
+                    <tr>
+                        <td>30 nap mire érezhetően profitál</td>
+                        <td>Az első héten célzottan halad</td>
+                    </tr>
+                    <tr>
+                        <td>Sokan lemorzsolódnak az elején</td>
+                        <td>Gyorsabb értékadás → magasabb megtartás</td>
+                    </tr>
+                    <tr>
+                        <td>1-on-1 tanácsadás nem skálázható</td>
+                        <td>AI-val 1200+ tag kap "személyes" figyelmet</td>
+                    </tr>
+                    <tr>
+                        <td>Marcell ideje szűk erőforrás</td>
+                        <td>Több idő a tartalom és közösség fejlesztésére</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- ═══ KI MIT HOZ ═══ -->
+    <section>
+        <div class="section-label">Együttműködés</div>
+        <h2>Ki mit hoz az asztalra?</h2>
+        <p>Ez egy <strong>közös projekt</strong> lenne, ahol mindenki a saját erősségét hozza. Tőled minimális időbefektetés kell — a nehéz technikai munkát mi csináljuk.</p>
+        <div class="brings-grid">
+            <div class="brings-card">
+                <h3>🐺 Marci hozza</h3>
+                <ul class="brings-list">
+                    <li>A szakmai tudást és tapasztalatot</li>
+                    <li>A Falka meglévő tartalmait</li>
+                    <li>A protokollok közötti logikát (ki mikor mit csináljon)</li>
+                    <li>Visszajelzést és finomhangolást</li>
+                    <li>Heti 2-3 óra idő a közös munkára</li>
+                </ul>
+            </div>
+            <div class="brings-card">
+                <h3>💻 Zsolt hozza</h3>
+                <ul class="brings-list">
+                    <li>AI és technológiai szakértelmet</li>
+                    <li>Fejlesztőcsapatot a megvalósításhoz</li>
+                    <li>A rendszer megtervezését és felépítését</li>
+                    <li>Integrációt (Skool vagy standalone)</li>
+                    <li>A teljes technikai hátteret</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- ═══ KÖVETKEZŐ LÉPÉSEK ═══ -->
+    <section>
+        <div class="section-label">Következő lépések</div>
+        <h2>Hogyan indulnánk?</h2>
+        <div class="flow">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-text">
+                    <h4>Egy 30 perces beszélgetés</h4>
+                    <p>Megbeszéljük az ötletet, te elmondod a gondolataidat, és megnézzük, hogy passzol-e a Falka irányához.</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-text">
+                    <h4>Prototípus 2 hét alatt</h4>
+                    <p>Készítünk egy működő demót néhány programoddal — amiből látni fogod, hogyan működne élesben.</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-text">
+                    <h4>Tesztelés néhány taggal</h4>
+                    <p>Kiválasztunk 10-20 tagot, akik kipróbálják. Ha tetszik nekik — skálázzuk az egész közösségre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <div class="cta-section">
+        <div class="cta-box">
+            <h2>Beszéljünk róla?</h2>
+            <p>Nem kérek nagy elköteleződést. Egy 30 perces beszélgetés — és ha tetszik az irány, építjük. Ha nem, semmi gond: a Falkát akkor is imádom. 🐺</p>
+            <div class="cta-buttons">
+                <a href="mailto:zsoltipi@gmail.com?subject=CustomFalka%20-%20Besz%C3%A9lj%C3%BCnk%20r%C3%B3la" class="btn btn-primary">Írj nekem e-mailt</a>
+                <a href="piaci-elemzes.html" class="btn btn-secondary">📊 Piaci elemzés & versenytársak</a>
+                <a href="https://www.skool.com/falka/" class="btn btn-secondary">Vissza a Falkába</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        CustomFalka koncepció — készítette Zsolt (zsoltipi@gmail.com) · 2026
+    </footer>
+
+</body>
+</html>
